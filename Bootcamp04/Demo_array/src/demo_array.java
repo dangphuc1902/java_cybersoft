@@ -17,3 +17,4 @@ public class demo_array {
 		// Khi chưa gán giá trị thì giá trị mặc định cho nó sẽ là số 0 hoặc chuỗi rỗng " "
 	}
 }
+	
