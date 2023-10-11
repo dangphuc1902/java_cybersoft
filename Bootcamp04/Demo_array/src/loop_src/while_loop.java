@@ -104,19 +104,35 @@ public class while_loop {
 //		}
 		
 		
-		String soChan = " ";
-		String soLe = " ";
 		
-		for(int i = 1; i < 100; i++) {
-			if(i % 2 == 0) {
-				soChan += i + " ";
-			} else {
-				soLe += i + " ";
-			}
-		}
-		System.out.println(soChan);
-		System.out.println(soLe);
+//		String soChan = " ";
+//		String soLe = " ";
+//		
+//		for(int i = 1; i < 100; i++) {
+//			if(i % 2 == 0) {
+//				soChan += i + " ";
+//			} else {
+//				soLe += i + " ";
+//			}
+//		}
+//		System.out.println(soChan);
+//		System.out.println(soLe);
 		
 
+		// Break: Thoát ra khỏi vòng lặp và tiếp xử lý code bên ngoài vòng lăp.
+		// Return: Thoát ra khỏi vòng lặp và dừng toàn bộ code sau return.
+	int i = 1;
+	String kq = "";
+	while(i <= 100) {
+		if(i % 2 == 0 && i == 2) {
+			kq = i + "";
+			break;
+		}
+		System.out.println("Kiem tra vòng lặp");
+		i++;
+		
+		// Break: Sau khi break thì sẽ thoát vòng lặp. Không chạy 2 dòng trên   
+	}
+	System.out.println("Số chẵn" + kq);
 	}
 }

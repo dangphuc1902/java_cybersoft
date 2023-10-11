@@ -1,3 +1,4 @@
+package baitapbuoi5;
 import java.util.Scanner;
 
 public class b4_b_buoi5 {
