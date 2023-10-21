@@ -4,5 +4,6 @@
 	<classpathentry kind="src" path="cauDieuKien/src"/>
 	<classpathentry kind="src" path="homework_at_home/Homework_number_04/src"/>
 	<classpathentry kind="src" path="homework_at_home/homework_session_3/src"/>
+	<classpathentry kind="src" path="Array_homework/array_homework"/>
 	<classpathentry kind="output" path="cauDieuKien/bin"/>
 </classpath>

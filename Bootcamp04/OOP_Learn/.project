@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>Java_Cybersoft_1</name>
+	<name>OOP_Learn</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -14,9 +14,21 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>README.md</name>
+			<type>1</type>
+			<location>D:/WorkSpace/Java_Cybersoft/Bootcamp04/OOP_Learn/lyThuyet.md</location>
+		</link>
+		<link>
+			<name>src/demo_oop/lyThuyet</name>
+			<type>1</type>
+			<location>D:/WorkSpace/Java_Cybersoft/Bootcamp04/OOP_Learn/lyThuyet.md</location>
+		</link>
+	</linkedResources>
 	<filteredResources>
 		<filter>
-			<id>1697024599106</id>
+			<id>1697333838297</id>
 			<name></name>
 			<type>30</type>
 			<matcher>

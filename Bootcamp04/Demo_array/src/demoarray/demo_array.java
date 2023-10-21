@@ -1,6 +1,9 @@
 package demoarray;
 
+import java.awt.PageAttributes.OriginType;
 import java.util.Scanner;
+
+import javax.lang.model.util.Elements.Origin;
 
 public class demo_array {
 	public static void main(String[] args) {
@@ -25,26 +28,30 @@ public class demo_array {
 //			tong += mangSo[i];
 //		}
 //		System.out.println("Giá trị tổng: " + tong);
-		Scanner scanner = new Scanner(System.in);
-		System.out.println("Vui lòng nhập số phần tử của mảng: ");
+//		Scanner scanner = new Scanner(System.in);
+//		System.out.println("Vui lòng nhập số phần tử của mảng: ");
+//		
+//		int n = scanner.nextInt();
+//		// Khai báo nhập số phần tử cho mảng. ví dụ n = 10 thì tạo ra mảng 10 phần tử. 
+//		int [] mangSo = new int[n];
+//		
+//		// Nhập từng giá trị cho mảng.(Duyệt qua từng phần tử của mảng và gán giá trị cho các phần tử) 
+//		for(int i = 0; i < n; i++) {
+//			System.out.println("Nhập giá trị cho phần tử: " + i);
+//			// Gán giá trị cho phần tử duyệt được bằng giá trị người dùng nhập vào.
+//			mangSo[i] = scanner.nextInt();
+//		}
+//		System.out.println("Giá trị của mảng: " + "{" + mangSo + "}");
+//		int tong = 0;
+//		// Tính tổng. Duyệt lại mảng mà người dùng đã nhập được trước đó và tính tổng, 
+//		for(int j = 0; j < n;j++) {
+//			tong += mangSo[j];
+//		}
+//		System.out.println("Tổng của mảng là: " + tong);
+		String name1 = "CodePresso";
+		String name2 = new String("CodePresso");
 		
-		int n = scanner.nextInt();
-		// Khai báo nhập số phần tử cho mảng. ví dụ n = 10 thì tạo ra mảng 10 phần tử. 
-		int [] mangSo = new int[n];
-		
-		// Nhập từng giá trị cho mảng.(Duyệt qua từng phần tử của mảng và gán giá trị cho các phần tử) 
-		for(int i = 0; i < n; i++) {
-			System.out.println("Nhập giá trị cho phần tử: " + i);
-			// Gán giá trị cho phần tử duyệt được bằng giá trị người dùng nhập vào.
-			mangSo[i] = scanner.nextInt();
-		}
-		System.out.println("Giá trị của mảng: " + "{" + mangSo + "}");
-		int tong = 0;
-		// Tính tổng. Duyệt lại mảng mà người dùng đã nhập được trước đó và tính tổng, 
-		for(int j = 0; j < n;j++) {
-			tong += mangSo[j];
-		}
-		System.out.println("Tổng của mảng là: " + tong);
+		System.out.println(name1.equals(name2));
 	}
 }
 	
