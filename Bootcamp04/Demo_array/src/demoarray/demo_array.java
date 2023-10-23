@@ -1,10 +1,5 @@
 package demoarray;
 
-import java.awt.PageAttributes.OriginType;
-import java.util.Scanner;
-
-import javax.lang.model.util.Elements.Origin;
-
 public class demo_array {
 	public static void main(String[] args) {
 		// Cú pháp: kiểu dữ liệu[] tên biến = new int[số ô lưu trữ dữ liệu];

@@ -1,7 +1,6 @@
 package homework.b3_DataOfABCBank;
 
 import java.text.DecimalFormat;
-import java.text.NumberFormat;
 
 /**
  * AccountOfABCBank
@@ -142,4 +141,5 @@ public class DataOfABCBank {
         System.out.println(account2.toString());
 
     }
+    
 }

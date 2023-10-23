@@ -74,7 +74,7 @@ public class Student_Management{
 		System.out.println("Moi ban nhap diemTH: ");
         float diemTH = scanner.nextFloat();
 		
-		Student_03.setMaSV(maSv);	
+		Student_03.setMaSV(maSv);
 		Student_03.setHoten(hoTen);
 		Student_03.setDiemLyThuyet(diemLT);
 		Student_03.setDiemThucHanh(diemTH);

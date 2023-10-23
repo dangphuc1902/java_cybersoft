@@ -146,7 +146,11 @@ public class menuHomeWork {
 		System.out.println("Mời bạn nhập số phần tử của mảng: ");
 		Scanner scanner = new Scanner(System.in);
 		int n = scanner.nextInt();
-		int[] mangSo = new int[n];
+		if(n < 0){
+			System.out.println("Mời bạn nhập lại số phần tử mảng!, số phần tử nên lớn hơn 0.");
+		}else {
+			int[] mangSo = new int[n];
+		}
 		nhapThongTin(mangSo);
 		while (true) {
 			System.out.println("\n\n\t\t======================== Menu ========================");
