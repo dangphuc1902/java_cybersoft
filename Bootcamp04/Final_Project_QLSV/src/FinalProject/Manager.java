@@ -1,32 +1,67 @@
 package FinalProject;
 
-public class TruongPhong extends NhanVienCongTy{
-	  private int soNhanVienDuoiQuyen;
+import java.util.ArrayList;
+public class Manager extends Personal {
+    private int numberEmployee = 0;
+    private ArrayList<Employee> listStaff;
 
-	  public TruongPhong() {
-	  }
+    public Manager() {
+        super();
+        listStaff = new ArrayList<>();
+        setDailySalary(200);
+		setPosition("Manager");
+    }
 
-	  public TruongPhong(String maSo, String hoTen, String soDienThoai, int soNgayLamViec, float luongMotNgay, String cachTinhLuong, int soNhanVienDuoiQuyen) {
-	   super(maSo, hoTen, soDienThoai, soNgayLamViec, luongMotNgay, cachTinhLuong);
-	   this.soNhanVienDuoiQuyen = soNhanVienDuoiQuyen;
-	  }
+    @Override
+    public void inputInformationEmployee() {
+        super.inputInformationEmployee();
+        enter_Number_Working_Days();
+        calculates_Employee_Salary();
+    }
+	public Manager(String employeeID, String fullName, String phoneNumber, int workingDays, double dailySalary) {
+		this.setEmployeeID(employeeID);
+		this.setFullName(fullName);
+		this.setPhoneNumber(phoneNumber);
+		this.setWorkingDays(workingDays);
+		this.setDailySalary(dailySalary);
+	}
+	
 
-	  public int getSoNhanVienDuoiQuyen() {
-	   return soNhanVienDuoiQuyen;
-	  }
+    @Override
+    public double calculates_Employee_Salary() {
+        return super.calculates_Employee_Salary() + 100 * listStaff.size();
+    }
 
-	  public void setSoNhanVienDuoiQuyen(int soNhanVienDuoiQuyen) {
-	   this.soNhanVienDuoiQuyen = soNhanVienDuoiQuyen;
-	  }
+    public void receiving_Staff(Employee nv) {
+    	listStaff.add(nv);
+    	numberEmployee++;
+        setNumberEmployee(getListStaff().size());
+    	setNumberEmployee(numberEmployee);
+    }
 
-	  @Override
-	  public float tinhLuongThang() {
-	   return super.tinhLuongThang() + (soNhanVienDuoiQuyen * 100000);
-	  }
+    public void eliminate_Employees(Employee nv) {
+    	listStaff.remove(nv);
+    	numberEmployee--;
+//        setNumberEmployee(getListStaff().size());
+    	setNumberEmployee(numberEmployee);
+    }
 
-	  @Override
-	  public String toString() {
-	   return super.toString() +
-	           ", Số nhân viên dưới quyền: " + soNhanVienDuoiQuyen;
-	  }
+    public ArrayList<Employee> getListStaff() {
+        return listStaff;
+    }
+
+    public void setListStaff(ArrayList<Employee> ListStaff) {
+        this.listStaff = ListStaff;
+    }
+
+	public int getNumberEmployee() {
+		return numberEmployee;
+	}
+
+	public void setNumberEmployee(int numberEmployee) {
+		this.numberEmployee = numberEmployee;
+	}
+
+
+
 }

@@ -1,0 +1,262 @@
+package FinalProject;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Scanner;
+
+public class MainApplication {
+    private static Company company;
+    private static ArrayList<Employee> employees = new ArrayList<Employee>();
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int choice = 0;
+        do {
+            System.out.println("MENU:");
+            System.out.println("1. Nhập thông tin công ty");
+            System.out.println("2. Phân bổ Nhân viên vào Trưởng phòng");
+            System.out.println("3. Thêm, xóa thông tin một nhân sự");
+            System.out.println("4. Xuất ra thông tin toàn bộ người trong công ty");
+            System.out.println("5. Tính và xuất tổng lương cho toàn công ty");
+            System.out.println("6. Tìm Nhân viên thường có lương cao nhất");
+            System.out.println("7. Tìm Trưởng Phòng có số lượng nhân viên dưới quyền nhiều nhất");
+            System.out.println("8. Sắp xếp nhân viên toàn công ty theo thứ tự abc");
+            System.out.println("9. Sắp xếp nhân viên toàn công ty theo thứ tự lương giảm dần");
+            System.out.println("10. Tìm Giám Đốc có số lượng cổ phần nhiều nhất");
+            System.out.println("11. Tính và Xuất tổng THU NHẬP của từng Giám Đốc");
+            System.out.println("0. Thoát chương trình");
+
+            System.out.print("Vui lòng chọn chức năng (0-11): ");
+            choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    inputCompanyInfo(scanner);
+                    break;
+                case 2:
+                    assignEmployeesToManager(scanner);
+                    break;
+                case 3:
+                    addOrRemoveEmployee(scanner);
+                    break;
+                case 4:
+                    displayAllEmployees();
+                    break;
+//                case 5:
+//                    displayTotalSalary();
+//                    break;
+//                case 6:
+//                    findHighestPaidEmployee();
+//                    break;
+//                case 7:
+//                    findManagerWithMostEmployees();
+//                    break;
+//                case 8:
+//                    sortEmployeesByName();
+//                    break;
+//                case 9:
+//                    sortEmployeesBySalary();
+//                    break;
+//                case 10:
+//                    findDirectorWithMostShares();
+//                    break;
+//                case 11:
+//                    displayTotalIncomeForDirectors();
+//                    break;
+                case 0:
+                    System.out.println("Chương trình đã thoát");
+                    break;
+                default:
+                    System.out.println("Vui lòng chọn chức năng hợp lệ");
+                    break;
+            }
+        } while (choice != 0);
+
+        scanner.close();
+    }
+
+    private static void displayAllEmployees() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void inputCompanyInfo(Scanner scanner) {
+        System.out.print("Nhập tên công ty: ");
+        String companyName = scanner.next();
+        System.out.print("Nhập mã số thuế: ");
+        String taxCode = scanner.next();
+        System.out.print("Nhập doanh thu tháng: ");
+        double monthlyRevenue = scanner.nextDouble();
+
+        company = new Company(companyName, taxCode, monthlyRevenue);
+    }
+
+    private static void assignEmployeesToManager(Scanner scanner) {
+        if (company == null) {
+            System.out.println("Vui lòng nhập thông tin công ty trước");
+            return;
+        }
+
+        System.out.print("Nhập ID của trưởng phòng: ");
+        int managerID = scanner.nextInt();
+        Manager manager = (Manager) findEmployeeByID(managerID);
+        if (manager == null) {
+            System.out.println("Không tìm thấy trưởng phòng với ID " + managerID);
+            return;
+        }
+
+        System.out.print("Nhập ID của nhân viên (nhập 0 để kết thúc): ");
+        int employeeID = scanner.nextInt();
+        while (employeeID != 0) {
+            Employee employee = findEmployeeByID(employeeID);
+            if (employee == null) {
+                System.out.println("Không tìm thấy nhân viên với ID " + employeeID);
+            } else if (employee instanceof Manager) {
+                System.out.println("Không thể phân bổ trưởng phòng vào trưởng phòng khác");
+            } else {
+                employee.setManager(manager);
+                System.out.println("Đã phân bổ nhân viên " + employee.getFullName() + " vào trưởng phòng " + manager.getFullName());
+            }
+            System.out.print("Nhập ID của nhân viên (nhập 0 để kết thúc): ");
+            employeeID = scanner.nextInt();
+        }
+    }
+
+    private static Employee findEmployeeByID(int employeeID) {
+		// TODO Auto-generated method stub
+        for (Employee employee : employees) {
+            if (employee.getEmployeeID() == employeeID) {
+                return employee;
+            }
+        }
+        return null;	}
+
+	private static void addOrRemoveEmployee(Scanner scanner) {
+        if (company == null) {
+            System.out.println("Vui lòng nhập thông tin công ty trước");
+            return;
+        }
+
+        System.out.println("1. Thêm nhân viên");
+        System.out.println("2. Thêm trưởng phòng");
+        System.out.println("3. Thêm giám đốc");
+        System.out.println("4. Xóa nhân sự");
+        System.out.print("Vui lòng chọn chức năng (1-4): ");
+        int choice = scanner.nextInt();
+
+        switch (choice) {
+            case 1:
+                addEmployee(scanner);
+                break;
+            case 2:
+                addManager(scanner);
+                break;
+            case 3:
+                addDirector(scanner);
+                break;
+            case 4:
+                removeEmployee(scanner);
+                break;
+            default:
+                System.out.println("Vui lòng chọn chức năng hợp lệ");
+                break;
+        }
+    }
+
+    private static void addEmployee(Scanner scanner) {
+        System.out.print("Nhập ID của nhân viên: ");
+        int employeeID = scanner.nextInt();
+        System.out.print("Nhập họ tên của nhân viên: ");
+        String fullName = scanner.next();
+        System.out.print("Nhập số điện thoại của nhân viên: ");
+        String phoneNumber = scanner.next();
+        System.out.print("Nhập số ngày làm việc trong tháng của nhân viên: ");
+        int workingDays = scanner.nextInt();
+        System.out.print("Nhập lương ngày của nhân viên: ");
+        double dailySalary = scanner.nextDouble();
+        System.out.print("Nhập phương thức tính lương (fixed/hourly): ");
+        String salaryCalculationMethod = scanner.next();
+
+        Employee employee = new Employee(employeeID, fullName, phoneNumber, workingDays, dailySalary, salaryCalculationMethod, null);
+        employees.add(employee);
+        System.out.println("Đã thêm nhân viên " + employee.getFullName());
+    }
+
+    private static void addManager(Scanner scanner) {
+        System.out.print("Nhập ID của trưởng phòng: ");
+        int managerID = scanner.nextInt();
+        System.out.print("Nhập họ tên của trưởng phòng: ");
+        String fullName = scanner.next();
+        System.out.print("Nhập số điện thoại của trưởng phòng: ");
+        String phoneNumber = scanner.next();
+        System.out.print("Nhập số ngày làm việc trong tháng của trưởng phòng: ");
+        int workingDays = scanner.nextInt();
+        System.out.print("Nhập lương ngày của trưởng phòng: ");
+        double dailySalary = scanner.nextDouble();
+        System.out.print("Nhập phương thức tính lương (fixed/hourly): ");
+        String salaryCalculationMethod = scanner.next();
+
+        Manager manager = new Manager(managerID, fullName, phoneNumber, workingDays, dailySalary, salaryCalculationMethod, null, workingDays);
+        employees.add(manager);
+        System.out.println("Đã thêm trưởng phòng " + manager.getFullName());
+    }
+
+    private static void addDirector(Scanner scanner) {
+        System.out.print("Nhập ID của giám đốc: ");
+        int directorID = scanner.nextInt();
+        System.out.print("Nhập họ tên của giám đốc: ");
+        String fullName = scanner.next();
+        System.out.print("Nhập số điện thoại của giám đốc: ");
+        String phoneNumber = scanner.next();
+        System.out.print("Nhập số ngày làm việc trong tháng của giám đốc: ");
+        int workingDays = scanner.nextInt();
+        System.out.print("Nhập lương ngày của giám đốc: ");
+        double dailySalary = scanner.nextDouble();
+        System.out.print("Nhập số cổ phần sở hữu: ");
+        int shares = scanner.nextInt();
+
+        Director director = new Director(directorID, fullName, phoneNumber, workingDays, dailySalary, phoneNumber, null, shares);
+        employees.add(director);
+        System.out.println("Đã thêm giám đốc " + director.getFullName());
+    }
+
+    private static void removeEmployee(Scanner scanner) {
+        System.out.print("Nhập ID của nhân viên cần xóa: ");
+        int employeeID = scanner.nextInt();
+
+        for (Employee employee : employees) {
+            if (employee.getEmployeeID() == employeeID) {
+                employees.remove(employee);
+                System.out.println("Đã xóa nhân viên " + employee.getFullName());
+                return;
+            }
+        }
+
+        System.out.println("Không tìm thấy nhân viên với ID " + employeeID);
+    }
+    private static void calculateSalary(Scanner scanner) {
+        for (Employee employee : employees) {
+            System.out.print("Nhập số ngày làm việc trong tháng của nhân viên " + employee.getFullName() + ": ");
+            int workingDays = scanner.nextInt();
+            employee.setWorkingDays(workingDays);
+            double salary = employee.calculateMonthlySalary();
+            System.out.println("Lương của nhân viên " + employee.getFullName() + " là " + salary);
+        }
+    }
+
+    private static void displayEmployeeList() {
+        System.out.println("Danh sách nhân viên:");
+        for (Employee employee : employees) {
+            System.out.println(employee);
+        }
+    }
+
+    private static void displayTotalSalary() {
+        double totalSalary = 0;
+        for (Employee employee : employees) {
+            totalSalary += employee.calculateMonthlySalary();
+        }
+        System.out.println("Tổng lương phải trả: " + totalSalary);
+    }
+}

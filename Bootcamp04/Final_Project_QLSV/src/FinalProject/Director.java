@@ -1,32 +1,47 @@
 package FinalProject;
 
-public class GiamDoc extends NhanVienCongTy {
-    private int soCoPhan;
-
-    public GiamDoc() {
+public class Director extends Personal {
+    private double shares;
+    public Director() {
+		super();
+		setDailySalary(300);
+		setPosition("Director");
+    }
+    
+    public void inputInforEmployee() {
+    	super.inputInformationEmployee();
+    	enter_Number_Working_Days();
+    	calculates_Employee_Salary();
+    	enter_Shares_In_Company();
+    }
+    public void outputInforEmployee() {
+    	String format = "%-10s | %-20s | %-10s | %-10i | %-10.2f | %-10.2f\n";
+    	System.out.printf(format, "Mã số", "Họ tên", "Số điện thoại", "Số ngày làm việc", "Lương một ngày", "Tính Lương: ");
+    	System.out.printf(format, employeeID, fullName, phoneNumber, workingDays, dailySalary, calculates_Employee_Salary());
     }
 
-    public GiamDoc(String maSo, String hoTen, String soDienThoai, int soNgayLamViec, float luongMotNgay, String cachTinhLuong, int soCoPhan) {
-        super(maSo, hoTen, soDienThoai, soNgayLamViec, luongMotNgay, cachTinhLuong);
-        this.soCoPhan = soCoPhan;
+	public Director(String employeeID, String fullName, String phoneNumber, int workingDays, double dailySalary) {
+		this.setEmployeeID(employeeID);
+		this.setFullName(fullName);
+		this.setPhoneNumber(phoneNumber);
+		this.setWorkingDays(workingDays);
+		this.setDailySalary(dailySalary);
+	}
+	
+	private void enter_Shares_In_Company() {
+		System.out.println("Vui long nhap phan tram co phieu ban co: ");
+		float percent_Of_Shares = Float.parseFloat(scanner.nextLine());
+		while(true) {
+			if(check.check_Voting_Percentage(percent_Of_Shares)) break;
+			else percent_Of_Shares = Float.parseFloat(scanner.nextLine());
+		}
+	}
+
+	public double getShares() {
+        return shares;
     }
 
-    public int getSoCoPhan() {
-        return soCoPhan;
-    }
-
-    public void setSoCoPhan(int soCoPhan) {
-        this.soCoPhan = soCoPhan;
-    }
-
-    @Override
-    public float tinhLuongThang() {
-        return super.tinhLuongThang() + (soCoPhan * 1000000);
-    }
-
-    @Override
-    public String toString() {
-        return super.toString() +
-                ", Số cổ phần: " + soCoPhan;
+    public void setShares(double shares) {
+        this.shares = shares;
     }
 }

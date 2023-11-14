@@ -1,40 +1,36 @@
 package FinalProject;
 
-public class NhanVienThuong extends NhanVienCongTy {
-    private float luongThuong;
-    private TruongPhong truongPhong;
-    public NhanVienThuong() {
+public class Employee extends Personal{
+	private String id_Manager = null;
+	public Employee() {
+		super();
+    	setDailySalary(100);
+		setPosition("Employee");
+
     }
 
-    public NhanVienThuong(String maSo, String hoTen, String soDienThoai, int soNgayLamViec, float luongMotNgay, String cachTinhLuong, float luongThuong, TruongPhong truongPhong) {
-        super();
-        this.luongThuong = luongThuong;
-        this.truongPhong = null;
+	public Employee(String employeeID, String fullName, String phoneNumber, int workingDays, double dailySalary) {
+		this.setEmployeeID(employeeID);
+		this.setFullName(fullName);
+		this.setPhoneNumber(phoneNumber);
+		this.setWorkingDays(workingDays);
+		this.setDailySalary(dailySalary);
     }
 
-    public float getLuongThuong() {
-        return luongThuong;
-    }
-
-    public void setLuongThuong(float luongThuong) {
-        this.luongThuong = luongThuong;
-    }
-    public TruongPhong getTruongPhong() {
-        return truongPhong;
-    }
-    
-    public void setTruongPhong(TruongPhong truongPhong) {
-        this.truongPhong = truongPhong;
-    }
-    
-    @Override
-    public float tinhLuongThang() {
-        return super.tinhLuongThang() + luongThuong;
-    }
-
-    @Override
-    public String toString() {
-        return super.toString() +
-                ", Lương thưởng: " + luongThuong;
-    }
+	public String getId_Manager() {
+		return id_Manager;
+	}
+	public void setId_Manager(String id_Manager) {
+		this.id_Manager = id_Manager;
+	}
+	public void inputInforEmployee() {
+		// TODO Auto-generated method stub
+		super.inputInformationEmployee();
+    	enter_Number_Working_Days();
+		calculates_Employee_Salary();
+		
+	} 
+	public void outputInforEmployee() {
+	    	System.out.printf("%-10s | %-20s | %-10s | %-10d | %-10.2f | %-10.2f\n", employeeID, fullName, phoneNumber, workingDays, dailySalary, calculates_Employee_Salary());
+	    }
 }

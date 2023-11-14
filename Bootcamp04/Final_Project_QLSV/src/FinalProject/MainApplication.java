@@ -1,83 +1,158 @@
 package FinalProject;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
-public class MainApplication { public static void main(String[] args) { QuanLyNhanSu quanLyNhanSu = new QuanLyNhanSu("ABC QuanLyNhanSu", "123456789", 1000000);
+public class MainApplication {
+	public static void main(String[] args) {
+		Company company = new Company();
+		Scanner scanner = new Scanner(System.in);
+		company.setListPersonal(createDummyData());
+		int choice = 0;
+		do {
+			System.out.println("\t==============---------- QUAN LY NHAN SU " + company.getCompanyName() + " ----------==============\t");
+			System.out.println("\t1. Nhap thong tin cong ty.");
+			System.out.println("\t2. Phan bo Nhan vien vao Truong Phong");
+			System.out.println("\t3. Them, xoa thong tin mot nhan su.");
+			System.out.println("\t4. Xuat ra thong tin toan bo nguoi trong cong ty. ");
+			System.out.println("\t5. Tinh va xuat tong luong cho toan cong ty");
+			System.out.println("\t6. Tim nhan vien thuong co luong cao nhat");
+			System.out.println("\t7. Tim Truong Phong co so luong nhan vien duoi quyen nhieu nhat");
+			System.out.println("\t8. Sap xep nhan vien toan cong ty theo thu tuc ABC");
+			System.out.println("\t9. Sap xep nhan vien toan cong ty theo thu tu luong giam dam");
+			System.out.println("\t10. Tim Giam Doc co so luong co phan nhieu nhat.");
+			System.out.println("\t11. Tinh va Xuat tong THU NHAP cua tung Giam Doc");
+			System.out.println("\t0. ==============---------- Thoat chuong trinh ----------============== \t");
 
-	NhanVienThuong employee1 = new NhanVienThuong("EMP001", "John Doe", "1234567890", 22, 50, null, 0);
-    NhanVienThuong employee2 = new NhanVienThuong("EMP002", "Jane Smith", "0987654321", 20, 45, null, 0);
-    TruongPhong manager1 = new TruongPhong("MGR001", "David Johnson", "9876543210", 25, 60, null, 5);
-    TruongPhong manager2 = new TruongPhong("MGR002", "Sarah Williams", "0123456789", 23, 55, null, 3);
-    GiamDoc director1 = new GiamDoc("DIR001", "Michael Brown", "6789012345", 24, 70, null, 10);
+			System.out.print("Vui long chon chuc nang (0-11): ");
+			choice = Integer.parseInt(scanner.nextLine());
 
-//    QuanLyNhanSu.addEmployee(employee1);
-//    QuanLyNhanSu.addEmployee(employee2);
-//    QuanLyNhanSu.addEmployee(manager1);
-//    QuanLyNhanSu.addEmployee(manager2);
-//    QuanLyNhanSu.addEmployee(director1);
+			switch (choice) {
+			case 1:
+                System.out.println("\t\t NHAP THONG TIN CONG TY: \t\t");
+				company.inputCompanyInfo();
+				break;
+			case 2:
+				System.out.println("\t\t PHAN BO NHAN VIEN VAO TRUONG PHUONG: \t\t");
+				company.add_Employee_For_Manager();
+				break;
+			case 3:
+				System.out.println("\t\t THEM HOAC XOA NHAN VIEN: \t\t");
+				company.addOrRemoveEmployee();
+				break;
+			case 4:
+				System.out.println("\t\t DANH SACH TOAN BO NHAN SU CUA CONG TY: \t\t");
+				company.export_Infor_All_People_Company();
+				break;
+            case 5:
+            	System.out.println("\t\t TONG LUONG TOAN CONG TY: " + company.Calculate_Export_Total_Salary_Entire_Company()+ " \t\t");
+                break;
+            case 6:
+            	System.out.println("\t\t NHAN VIEN THUONG CO LUONG CAO NHAT: \t\t");
+            	company.find_Employees_Highest_Salary();
+                break;
+            case 7:
+            	System.out.println("\t\t TRUONG PHONG CO SO LUONG NHAN VIEN DUOI QUYEN NHIEU NHAT LA: \t\t");
+            	company.find_Manager_With_Largest_Number_Employee();
+                break;
+            case 8:
+            	System.out.println("\t\t DANH SACH NHAN VIEN TOAN CONG TY THEO THU TU TEN ABC: \t\t");
+            	company.Arrange_Employee_By_Name_ABC();
+                break;
+            case 9:
+            	System.out.println("\t\t DANH SACH NHAN VIEN TOAN CONG TY THEO THU TU LUONG GIAM DAN: \t\t");
+            	company.Arrange_Employee_By_Salary_Descending();
+                break;
+            case 10:
+            	System.out.println("\t\t GIAM DOC CO SO LUONG CO PHAN NHIEU NHAT: \t\t");
+            	company.find_Director_Most_Shares();
+                break;
+            case 11:
+            	System.out.println("\t\t TONG THU NHAP CUA TUNG GIAM DOC: \t\t");
+            	company.total_Income_Each_Director();
+                break;
+			case 0:
+				System.out.println("\t\t THOAT CHUONG TRINH \t\t");
+				break;
+			default:
+				System.out.println("Vui long chon chuc nang hop le");
+				break;
+			}
+		} while (choice != 0);
 
-    Scanner scanner = new Scanner(System.in);
-    int choice;
+	}
+	public static ArrayList<Personal> createDummyData() {
+        ArrayList<Personal> dataBase = new ArrayList<>();
 
-    do {
-        System.out.println("----- MENU -----");
-        System.out.println("1. Print all employees");
-        System.out.println("2. Calculate total salary");
-        System.out.println("3. Find highest paid employee");
-        System.out.println("4. Find manager with most employees");
-        System.out.println("5. Sort employees by name");
-        System.out.println("6. Sort employees by salary");
-        System.out.println("7. Find director with most shares");
-        System.out.println("8. Calculate and print director income");
-        System.out.println("9. Add new employee");
-        System.out.println("10. Remove employee");
-        System.out.println("11. Exit");
-        System.out.print("Enter your choice: ");
-        choice = scanner.nextInt();
+        Personal nv1 = new Employee();
+        nv1.setEmployeeID("nv000001");
+        nv1.setFullName("Nguyen Van Khang");
+        nv1.setPhoneNumber("0325478165");
+        nv1.setWorkingDays(23);
+        nv1.setPosition("Employee");
+        ((Employee)nv1).setId_Manager("nv000006");
+        dataBase.add(nv1);
 
-//        switch (choice) {
-//            case 1:
-//                QuanLyNhanSu.printAllEmployees();
-//                break;
-//            case 2:
-//                double totalSalary = QuanLyNhanSu.calculateTotalSalary();
-//                System.out.println("Total Salary: " + totalSalary);
-//                break;
-//            case 3:
-//                Employee highestPaidEmployee = QuanLyNhanSu.findHighestPaidEmployee();
-//                System.out.println("Highest Paid Employee: " + highestPaidEmployee.getFullName());
-//                break;
-//            case 4:
-//                Manager managerWithMostEmployees = QuanLyNhanSu.findManagerWithMostEmployees();
-//                System.out.println("Manager with Most Employees: " + managerWithMostEmployees.getFullName());
-//                break;
-//            case 5:
-//                QuanLyNhanSu.sortEmployeesByName();
-//                QuanLyNhanSu.printAllEmployees();
-//                break;
-//            case 6:
-//                QuanLyNhanSu.sortEmployeesBySalary();
-//                QuanLyNhanSu.printAllEmployees();
-//                break;
-//            case 7:
-//                Director directorWithMostShares = QuanLyNhanSu.findDirectorWithMostShares();
-//                System.out.println("Director with Most Shares: " + directorWithMostShares.getFullName());
-//                break;
-//            case 8:
-//                QuanLyNhanSu.calculateAndPrintDirectorIncome();
-//                break;
-//            case 9:
-//                // Add new employee logic
-//                break;
-//            case 10:
-//                // Remove employee logic
-//                break;
-//            case 11:
-//                System.out.println("Exiting program...");
-//                break;
-//            default:
-//                System.out.println("Invalid choice. Please try again.");
-//                break;
-//        }
-    } while (choice != 11);
-}
+        Personal nv2 = new Employee();
+        nv2.setEmployeeID("nv000002");
+        nv2.setFullName("Hoang Thi Loan");
+        nv2.setPhoneNumber("0325478456");
+        nv2.setPosition("Employee");
+        ((Employee)nv2).setId_Manager("nv000006");
+        nv2.setWorkingDays(20);
+
+        dataBase.add(nv2);
+
+        Personal nv3 = new Manager();
+        nv3.setEmployeeID("nv000003");
+        nv3.setFullName("Le Van Bo");
+        nv3.setPhoneNumber("0325478456");
+        nv3.setWorkingDays(25);
+        nv3.setPosition("Manager");
+
+
+        dataBase.add(nv3);
+
+        Personal nv4 = new Director();
+        nv4.setEmployeeID("nv000004");
+        nv4.setFullName("Le Hoang Dieu");
+        nv4.setPhoneNumber("0325478456");
+        nv4.setWorkingDays(12);
+        nv4.setPosition("Director");
+        ((Director)nv4).setShares(20);
+
+        dataBase.add(nv4);
+
+        Personal nv5 = new Employee();
+        nv5.setEmployeeID("nv000005");
+        nv5.setFullName("Nguyen Van Minh");
+        nv5.setPhoneNumber("0325408165");
+        nv5.setWorkingDays(23);
+        nv5.setPosition("Employee");
+
+        dataBase.add(nv5);
+
+        Personal nv6 = new Manager();
+        nv6.setEmployeeID("nv000006");
+        nv6.setFullName("Le Van An");
+        nv6.setPhoneNumber("0325478456");
+        nv6.setWorkingDays(23);
+        nv6.setPosition("Manager");
+
+        dataBase.add(nv6);
+
+        Personal nv7 = new Director();
+        nv7.setEmployeeID("nv000007");
+        nv7.setFullName("Bui Viet Phuc");
+        nv7.setPhoneNumber("0325478456");
+        nv7.setWorkingDays(20);
+        nv7.setPosition("Director");
+
+        ((Director)nv7).setShares(40);
+
+        dataBase.add(nv7);
+
+        return dataBase;
+    }
+
 }
