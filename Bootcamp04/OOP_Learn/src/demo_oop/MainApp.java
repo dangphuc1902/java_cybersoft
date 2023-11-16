@@ -38,8 +38,8 @@ public class MainApp {
     	// Kết quả chạy nó sẽ hiện thi chạy của Class cha trc, sau đó chạy tiếp hàm ở class con. 
     	
     	// sử dụng Interface để chỉ phải gọi tới hàm, không cần khởi tạo các biến
-    	TinhNang lopTruong = new LopTruong();
-    	lopTruong.xuatThongTin();
+//    	TinhNang lopTruong = new LopTruong();
+//    	lopTruong.xuatThongTin();
  
     }
 }

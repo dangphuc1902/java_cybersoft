@@ -112,6 +112,7 @@ public class menuHomeWork {
 		for (int i = 0; i < mangSo.length; i++) {
 			if (kiemTraSoNguyenTo(mangSo[i])) {
 				soNguyenToDauTien = mangSo[i];
+				break;
 			}
 		}
 		String ketQua = (soNguyenToDauTien == -1) ? "Không tìm thấy số nguyên tố trong mảng! " : "Số nguyên tố đầu tiên là: ";
@@ -149,8 +150,8 @@ public class menuHomeWork {
 		if(n < 0){
 			System.out.println("Mời bạn nhập lại số phần tử mảng!, số phần tử nên lớn hơn 0.");
 		}else {
-			int[] mangSo = new int[n];
 		}
+		int[] mangSo = new int[n];
 		nhapThongTin(mangSo);
 		while (true) {
 			System.out.println("\n\n\t\t======================== Menu ========================");

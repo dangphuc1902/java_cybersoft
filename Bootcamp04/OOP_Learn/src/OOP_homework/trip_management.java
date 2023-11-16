@@ -73,6 +73,7 @@ public abstract class trip_management implements tinhNang {
 		outOfTownTrip.setMaSoChuyen(104);
 		outOfTownTrip.setSoKmdiduoc(100);
 		outOfTownTrip.xuatThongTin();
+		
 	}
 }
 
