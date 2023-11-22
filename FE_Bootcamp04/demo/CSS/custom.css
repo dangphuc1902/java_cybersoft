@@ -1,0 +1,24 @@
+.btn-white{
+    background-color: white;
+    border: none;
+    color: black;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+.mt-16{
+    margin-top: 16px;
+}
+.mt-42{
+    margin-top: 42px;
+}
+
+.btn{
+    width: 200px;
+    text-align: center;
+    background-color: #5ed183;
+    cursor: pointer;
+    padding: 10px 20px;
+    margin: 5px;
+    color: white;
+    border-radius: 20px;
+}

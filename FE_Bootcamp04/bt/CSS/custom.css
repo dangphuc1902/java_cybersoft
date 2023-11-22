@@ -1,0 +1,37 @@
+body {
+    background-color: #314a60;
+    font-family: 'Times New Roman', Times, serif;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);    
+}
+.positon{
+    background-color: #fff;
+    height: 600px;
+    width: 410px;
+    border-radius: 20px;
+}
+.positon .mountain-image {
+  width: 100%;
+  border-radius: 20px 20px 0px 0px;   
+  /* Trên phải, trên trái, dưới trái, dưới phải */
+}
+.content{
+    color: #7f8699;
+    padding: 8px 40px 32px 40px;
+  }
+  .content p{
+    line-height: 24px;
+  }
+  .content h6{
+    color: #7f8699;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  .content h1{
+    color: #2b385e;
+    font-size: 24px;
+  }
+  
+  
