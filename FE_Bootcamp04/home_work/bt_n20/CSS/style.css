@@ -1,0 +1,154 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* Add more properties as needed */
+}
+
+body {
+  font-family: sans-serif;
+
+}
+
+.header {
+  position: relative;
+  width: 100%;
+
+}
+
+.contact p {
+  background-color: #0eacf5;
+  text-align: right;
+  padding: 10px 10px 10px 0px;
+  color: white;
+  font-weight: 500;
+}
+
+.main {
+  position: absolute;
+  margin: 15px 15px 25px 25px;
+}
+
+.main p,ul{
+  margin-top: 15px;
+}
+
+.main ul{
+  margin-left: 35px;
+}
+
+.header {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.header nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+  background: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+
+.header nav .logo {
+  font-size: 35px;
+  margin: 5px 0;
+  cursor: pointer;
+  position: relative;
+  left: -4%;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.header nav .logo span {
+  color: rgb(0, 81, 255);
+}
+
+.header nav ul {
+  list-style: none;
+  margin-top  : 55px;
+}
+
+.header nav ul li {
+  display: inline-block;
+  margin: 15px 15px;
+}
+.header nav ul li a{
+  text-decoration: none;
+  color: black;
+}
+.image{
+  position: relative;
+}
+.image img{
+  width: 100%;
+  margin-top: 65px;
+}
+.image .content{
+  position: absolute;
+  height: 69%;
+  width: 80%;
+  background-color: rgba(0, 0, 0, 0.4);
+  left: 142px;
+  top: 64px;
+}
+
+.image .content .text{
+  margin-top: 177px;
+  left: 142px;
+  color: white;
+  font-size: 28px;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: 300;
+  opacity: 0.5;
+}
+
+.footer{
+  position: absolute;
+  margin-top: 315px;
+  width: 100%;
+}
+
+.footer .footer_action input{
+  margin: 15px;
+}
+.footer h2 {
+  text-align: center;
+  margin-top: 15px;
+}
+form {
+  width: 500px;
+  margin: 0 auto;
+}
+
+input {
+  width: 200px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  opacity: 0.6;
+}
+.sex{
+  width: 200px;
+  height: 34px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+.text_input{
+  width: 435px;
+  height: 100px;
+}
+
+.footer .footer_action button {
+  background-color: #008CBA;
+  color: white;
+  width: 435px;
+  height: 30px;
+  margin-left: 15px;
+  border: none;
+}
