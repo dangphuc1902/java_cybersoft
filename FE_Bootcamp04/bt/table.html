@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <table border="1">
+        <!-- Tạo ra các dòng và cột liên quan tới header -->
+        <thead>
+            <!-- tr: tạo ra một dòng trong table -->
+            <tr>
+                <!-- th: Tạo cột trên dòng chứa nó(Dành cho tiêu đề thead) -->
+                <th>Sr.No</th>
+                <th>Roo No</th>
+                <th>Name</th>
+                <th>Team</th>
+            </tr>
+        </thead>
+
+        <!-- Nội dung dữ liệu từng dòng từng cột -->
+        <tbody>
+            <tr>
+                <!-- td: cột -->
+                <td>1</td>
+                <td>1001</td>
+                <td>John</td>
+                <td>Red</td>
+            </tr>
+            <tr>
+                <!-- td: cột -->
+                <td rowspan="2">2</td>
+                <td>1002</td>
+                <td>John</td>
+                <td>Red</td>
+            </tr>
+            <tr>
+                <!-- td: cột -->
+                <!-- <td>3</td> -->
+                <td>1003</td>
+                <td>John</td>
+                <td>Red</td>
+            </tr>
+            <tr>
+                <!-- colspan= "3" : Chiếm 3 cột(Merge 3 cột thành 1 cột)  -->
+                <td colspan=" 3 ">Total</td>
+                <td>1000</td>
+            </tr>
+        </tbody>
+
+    </table>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th colspan="2">Name</th>
+                <th>Type</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td rowspan="4">Traditional Coffee</td>
+                <td rowspan="2" style="background-color: pink;">Vietnamese Coffee Phin</td>
+                <td style="background-color: red;">Hot</td>
+                <td style="background-color: red;">28.000vnd</td>
+            </tr>
+
+            <tr>
+                <td style="background-color: blue;text-align: right;">Cold</td>
+                <td style="background-color: blue;">30.000vnd</td>
+            </tr>
+
+            <tr>
+                <td rowspan="2" style="background-color: green; text-align: right">Vietnamese Coffee with Milk
+
+                    Bac Xiu - Vietnamese Coffee with (much) Milk
+                </td>
+                <td style="background-color: red;">Hot</td>
+                <td style="background-color: red;">28.000vnd</td>
+            </tr>
+
+            <tr>
+                <td style="background-color: blue;text-align: right;">Cold</td>
+                <td style="background-color: blue;text-align: right;">30.000vnd</td>
+            </tr>
+
+            <tr>
+                <td rowspan="3">Espresso</td>
+                <td style="background-color: yellow;text-align: center">Traditional Espresso</td>
+                <td rowspan="3" style="background-color: orange;">Hot(only)</td>
+                <td style="background-color: chocolate;">40.000vnd</td>
+            </tr>
+
+            <tr>
+                <td style="background-color: pink;text-align: left">Espresso Machiato</td>
+                <td rowspan="2" style="background-color: brown;">45.000vnd</td>
+            </tr>
+
+            <tr>
+                <td style="background-color: green; text-align: right">Cappuccino</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>
