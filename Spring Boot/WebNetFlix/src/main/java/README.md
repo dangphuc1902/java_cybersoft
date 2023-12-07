@@ -401,3 +401,6 @@ public class PostController {
         + Maven Central Repository: Repository trung tâm được quản lý bơi Maven
     
 # 8. Data Access Layer
+    - Thực hiện việc truy cập cơ sở dữ liệu để lưu trữ và truy xuất dữ liệu
+    - Tầng lớp trừu tượng hóa giữa Service và Database
+ 
