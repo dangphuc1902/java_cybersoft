@@ -7,11 +7,14 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(value = "/post")
 public class PostController {
-//
 //        @RequestMapping(method = RequestMethod.GET)
-        PostService postService = new PostService();
+        PostService postService;
+
+        public PostController(PostService postService){
+            this.postService = postService;
+        }
         @GetMapping
-        public PostDto getPost(@RequestParam int id) {
+        public PostDto getPost(@RequestParam Integer id) {
             // Truy xuất dữ liệu trả về kq
             PostDto result = postService.getPost(id);
             return result;

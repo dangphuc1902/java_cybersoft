@@ -403,4 +403,92 @@ public class PostController {
 # 8. Data Access Layer
     - Thực hiện việc truy cập cơ sở dữ liệu để lưu trữ và truy xuất dữ liệu
     - Tầng lớp trừu tượng hóa giữa Service và Database
- 
+## 8.1 Công nghệ truy cập dữ liệu.
+    - JDBC(Java Database Connectivity)
+        + API tiêu chuẩn của Java để truy cập cơ sở dữ liệu
+    - JDBC Template
+        + API của Spring để sử dụng JDBSC hiệu quả.
+    - SQL Mapper
+        + Công nghệ ánh xạ SQL và đối tượng Java
+        + Ánh xạ đầu vào hoặc đầu ra của SQL với đối tượng Java
+    - ORM(Object Relation Mapping)
+        + Công nghệ ánh xạ bảng RDBMS và đối tượng Java.
+        + ORM Framework thực hiện vai trò ánh xạ giữa đối tượng và bảng.
+        + ORM Framework tự động tạo ra SQL
+## 8.2 Công nghệ truy cập dữ liệu
+    - SQL Mapper
+        + Ở Java, MyBatis thường được sử dụng để áp dụng SQL Mapper
+    - ORM 
+        + Java, Spring, Hibermate và Spring Data JPA thường được sử dụng để áp dụng ORM.
+## 8.3 Sẵn sàng sử dụng My Batis 1 - Cài đặt phụ thuộc trong Maven
+### 8.3.1 Cấu hình MyBatis trong Spring Boot
+    - Thiết lập tính phụ thuộc Maven
+        + MyBatis và H2 Database
+    - Cấu hình ứng dụng Spring
+        + Thiết lập application.properties
+## 8.4 Maven
+    - Công cụ tự động hóa xây dụng được sử dụng trong dự án Java
+        + Quá trình biên dịch mã nguồn thành phần mềm có thể chạy được
+    - 2 chức năng chính của Maven
+        + Quản lý cấu trúc và xây dụng dự án
+        + Quản lý phụ thuộc thư viện
+### 8.4.1 Quản lý phụ thuộc thư vịện Maven
+    - Nếu chỉ định thông tin thư viện bên ngoài, nó sẽ tự động tải xuống và sử dụng
+        + Cài đặt thông tin thư viện sử dụng trong phần dependencies của file pom.xml
+    - Cần phải đăng ký thư viện sử dụng trong Maven Reponsitory
+        + Maven Central Repository: Repository trung tâm được quản lý bởi Maven.
+### 8.4.2 Maven pom.xml
+    - Tệp pom.xml tối thiểu
+        + Bắt đầu với thẻ project
+        + groupld: tên duy nhất xác định được giữa các dự án khác nhau(Thường là đảo ngược url của công ty)
+        + artifactld: tên ứng dụng trong phạm vi dự án, tên tệp kết quả được tạo ra sau khi xây dựng
+        + version: phiên bản của ứng dụng đang được phát triển
+
+```xml
+
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+    <modelVersion>4.0.0</modelVersion>
+    
+    <groupId>com.codepresso</groupId>
+    <artifactId>simple-blog</artifactId>
+    <version>0.0.1</version>
+</project>
+```
+    - Liệt kê các thư viện bằng nhiều phần tử dependency trong thẻ dependencies
+    - Chỉ định groupId, artifactld, version và các thông tin khác trong thẻ dependency
+```xml
+    <dependencies>
+        <dependency>
+            <grounpId>org.springframework.boot</grounpId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>2.6.3</version>
+        </dependency>
+</dependencies>
+```
+
+## 8.5 Cài đặt phụ thuộc Maven để sử dụng MyBatis
+    - Thêm phụ thuộc Maven để sử dụng MyBatis và H2 Database
+
+[//]: # (```xml)
+
+[//]: # (<dependency>)
+
+[//]: # (    <groupId>org.mybatis.spring.boot</groupId>)
+
+[//]: # (    <artifactId>mybatis-spring-boot-starter</artifactId>)
+
+[//]: # (    <version>2.2.2</version>)
+
+[//]: # (</dependency>)
+
+[//]: # ()
+[//]: # (<dependency>)
+
+[//]: # (    <groupId>org.h2database</groupId>)
+
+[//]: # (    <artifactId>h2</artifactId>)
+
+[//]: # (</dependency>)
+
+[//]: # (```)
+

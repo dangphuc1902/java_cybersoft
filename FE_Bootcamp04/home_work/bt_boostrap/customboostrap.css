@@ -1,5 +1,3 @@
-.backgroundimg{
-    max-width: 90%;
-    max-height: 90%;
-    
-}
+.background_img {
+    object-fit: cover; /* Ensure the images cover the entire carousel item */
+  }

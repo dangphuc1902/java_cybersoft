@@ -1,9 +1,13 @@
 package com.dtp.WebNetFlix.service;
 
 import com.dtp.WebNetFlix.controllertest.dto.PostDto;
+import org.springframework.stereotype.Service;
 
+@Service
 public class PostService{
+        public PostService(){
 
+        }
         public PostDto getPost(int id){
             System.out.println("find post data from database by " + id);
             System.out.println("validate data from database");
