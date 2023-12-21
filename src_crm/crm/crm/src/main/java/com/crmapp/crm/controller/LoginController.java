@@ -45,4 +45,9 @@ public class LoginController {
         }
         return "login";
     }
+    @RequestMapping("/dashboard")
+    public String Dashboard(){
+
+        return "index";
+    }
 }
