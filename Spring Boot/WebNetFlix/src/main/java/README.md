@@ -114,7 +114,7 @@ public class HelloController {
     - API để chia sẽ dữ liệu từ xa sử dụng HTTP(s)
         +HTTP API
     - REST API(REpresentational State Transfer): 
-        + Phong cách kiến trúc để chia sẻ dữ liệu hiêệu quả trên web.
+        + Phong cách kiến trúc để chia sẻ dữ liệu hiệu quả trên web.
         + phải thõa mãn điều kiện, khó thực hiện bằng cách thỏa mãn tất cả các điều kiện thực tế.
             - Hầu hết đều sử dụng API REST
     -@RestController Annotation chỉ định các lớp cho API REST và API HTTP
@@ -321,17 +321,17 @@ public  class  PostDto{
         + Application Layer(@Service): Xử lý logic nghiệp vụ khác nhau cho các mục đích cụ thể.
     - Sử dng @Service Annotation trong lớp
     - Thực hiện xác thực dữ liệu truyền dưới dạng tham số.
-    - Truy cập cơ sở dữ liệu bằng tầng Reponsitory
-        + Một phương thức duy nhất trong tầng Services trở thành đơn vị giao dịch, 
+    - Truy cập cơ sở dữ liệu bằng tầng Reponsitory để truy cập cơ sở dữ liệu khi cần thiết.
+        + Một phương thức duy nhất trong tầng Services trở thành đơn vị giao dịch của Cơ sở dữ liệu, 
     - Tạo và hiện thực các lớp cho từng khu vực cụ thể của ứng dụng (User, Post,...)
     - Việc sử dụng các giao diện được khuyến nghị, nhưng có thể không sử dụng nếu không có yêu cầu mở rộng chức năng sử dụng tính đa hình.
 ## Thực hiện Service:
     - Tạo và triển khai các lớp cho từng khu vực cụ thể của ứng dụng.Chia nhỏ chức năng cụ thể.
     - Client(1)    @Controller(2):               @Service(3)                    @Reponsitory(4)
-                + (1)UserController(1)           (2)UserService(1.1,1.2)         (3)UserRepository
-                + (1)PostController(2)           (2)PostService(1.2,- 2.3)       (3)PostReponsitory
-                + (1)ReplyController(3)          (2)ReplyService(1.3,2.2)        (3)ReplyReponsitory
-                + (1)SearchController(4)         (2)SearchService(1.4)           (3)SearchRepository
+                + (1)UserController(1)(RESTful API liên quan đến người dùng)           (2)UserService(1.1,1.2)         (3)UserRepository
+                + (1)PostController(2)(Bài đăng)           (2)PostService(1.2,- 2.3)       (3)PostReponsitory
+                + (1)ReplyController(3)(Bình luận)          (2)ReplyService(1.3,2.2)        (3)ReplyReponsitory
+                + (1)SearchController(4)(Tìm kiếm)         (2)SearchService(1.4)           (3)SearchRepository
     - Tạo một lớp mới trong gói Service
 
 ```java

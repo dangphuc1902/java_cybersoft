@@ -15,10 +15,8 @@ public class login {
         return "hello";
     }
     @PostMapping("/welcomeuser")
-    public String welcome(@RequestParam(required = false) String username){
-        {
-            System.out.println("Ten nguoi dung: " + username);
-            return "welcome";
-        }
+    public String welcome(@RequestParam(required = false) String username, @RequestParam(required = false) String password){
+        System.out.println("Ten dang nhap: " + username + " Mat Khau " + password);
+        return "welcome";
     }
 }

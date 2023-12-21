@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 @Entity(name = "demo")
 public class Demo_Entity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Tự động tăng lên
     private int id;
     @Column(name = "name")
     private String name;
