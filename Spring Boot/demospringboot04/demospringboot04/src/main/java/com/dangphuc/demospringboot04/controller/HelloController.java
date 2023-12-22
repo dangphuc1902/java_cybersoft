@@ -51,54 +51,54 @@ public class HelloController {
      *         return "hello";
      *     }
      * */
-//    @Autowired      // Tìm class mà lưu trữ IOC
-//    @Qualifier() // Lấy Class có tên beamn là demo2 trên IOC
-//    private Demo_Entity demoEntity;
+   @Autowired      // Tìm class mà lưu trữ IOC
+   @Qualifier() // Lấy Class có tên beamn là demo2 trên IOC
+   private Demo_Entity demoEntity;
 
-//    @Autowired
-//    private EmployeeRepository employeeRepository;
-//
-//    @GetMapping("")
-//    public String hello(){
-//        List<Employees_Entity> list = employeeRepository.findByEmployeNameAndAndSalary("John Doe",60000 );
-////            findAll(): Hàm hỗ trợ sẵn lấy toàn bộ cơ sở dữ liệu.
-//        for (Employees_Entity data : list){
-//            System.out.println("Kiem tra " + data.getEmployeName());
-//        }
-//        return "hello";
-//    }
+   @Autowired
+   private EmployeeRepository employeeRepository;
+
+   @GetMapping("")
+   public String hello(){
+       List<Employees_Entity> list = employeeRepository.findByEmployeNameAndAndSalary("John Doe",60000 );
+//            findAll(): Hàm hỗ trợ sẵn lấy toàn bộ cơ sở dữ liệu.
+       for (Employees_Entity data : list){
+           System.out.println("Kiem tra " + data.getEmployeName());
+       }
+       return "hello";
+   }
 
 
-//    @GetMapping("/java")
-//    public String helloJava(@RequestParam(required = false) String loichao,@RequestParam Integer age){
-//    // Hàm helloJava sẽ xử lý logic code cho đường dẫn /hello/java
-//        System.out.println("kiem tra tham so: " + loichao + " tuoi nhan vien " + age);
-//        // Trả ra giao diện của file hello.html (được thymleaf hỗ trợ sẵn)
-//        return "hello";
-//    }
+   @GetMapping("/java")
+   public String helloJava(@RequestParam(required = false) String loichao,@RequestParam Integer age){
+   // Hàm helloJava sẽ xử lý logic code cho đường dẫn /hello/java
+       System.out.println("kiem tra tham so: " + loichao + " tuoi nhan vien " + age);
+       // Trả ra giao diện của file hello.html (được thymleaf hỗ trợ sẵn)
+       return "hello";
+   }
 
 //    Tạo đường dẫn có tên là / máy tính với phương thức Get, yêu cầu người dùng truyền lên 2 tham số với tên tham số là soA và soB.
 //    Thực hiện phép tính tổng với soA và soB.
-//    @GetMapping("/maytinh")
-//    public String maytinh(@RequestParam int soA,int soB)
-//    {
-//        int tong = soA + soB;
-//        System.out.println("tong hai tham so la: " + soA + " + " + soB + " = " + tong);
-//        return "hello";
-//    }
+   @GetMapping("/maytinh")
+   public String maytinh(@RequestParam int soA,int soB)
+   {
+       int tong = soA + soB;
+       System.out.println("tong hai tham so la: " + soA + " + " + soB + " = " + tong);
+       return "hello";
+   }
     // TODO  - POST
-//    @PostMapping("/welcome")
-//    public String welcome(@RequestParam(required = false) String username, @RequestParam(required = false) String password){
-//        System.out.println("Ten dang nhap: " + username + " Mat Khau " + password);
-//        return "welcome";
-//    }
+   @PostMapping("/welcome")
+   public String welcome(@RequestParam(required = false) String username, @RequestParam(required = false) String password){
+       System.out.println("Ten dang nhap: " + username + " Mat Khau " + password);
+       return "welcome";
+   }
 //    TODO PathVariable
-//     pathvariable {hello} là tham số truyền vào. Tham số đóng vai trò một đường dẫn.
-//    @GetMapping("/pathvariable/{hello}/{age}")
-//    public String pathVariable(@PathVariable String hello,@PathVariable int age){
-//        System.out.println("Kiem tra Path: " + hello);
-//        return "hello";
-//    }
+    // pathvariable {hello} là tham số truyền vào. Tham số đóng vai trò một đường dẫn.
+   @GetMapping("/pathvariable/{hello}/{age}")
+   public String pathVariable(@PathVariable String hello,@PathVariable int age){
+       System.out.println("Kiem tra Path: " + hello);
+       return "hello";
+   }
 // TODO    4 Cách để đưa class khởi tạo sẵn giá trị lưu trữ trên IOC(Container dùng chung. lưu trong ứng dụng.)
 //     - Khi muốn lấy trên IOC thì sử dụng Autowried
 
