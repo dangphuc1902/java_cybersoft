@@ -221,7 +221,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@RequestMapping(value = "/post")
+@RequestMapping(value = "/post")    // URI
 public class PostController {
     //    @RequestMapping(method = GET)
     @GetMapping
