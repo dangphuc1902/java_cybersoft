@@ -1,11 +1,14 @@
 package com.crmapp.crm.controller;
 
-import com.crmapp.crm.Entity.UsersEntity;
+import com.crmapp.crm.entity.RolesEntity;
+import com.crmapp.crm.entity.UsersEntity;
+//import com.crmapp.crm.repository.RoleIdUserReponsitory;
+import com.crmapp.crm.repository.RolesRepository;
 import com.crmapp.crm.repository.UserRespository;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.apache.tomcat.util.modeler.BaseAttributeFilter;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,8 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @Controller
@@ -24,9 +25,17 @@ public class LoginController {
     @Autowired
     private UserRespository userRespository;
 
+    @Autowired
+    private RolesRepository rolesRepository;
+
+//    public LoginController(RoleIdUserReponsitory roleIdUserReponsitory) {
+//        this.roleIdUserReponsitory = roleIdUserReponsitory;
+//    }
+
     public boolean authenticate(String email, String password) {
         // Tìm người dùng có email và mật khẩu tương ứng
         List<UsersEntity> listUser = userRespository.findByEmailAndPassword(email, password);
+
         // Nếu tìm thấy ít nhất một người dùng, trả về true
         return !listUser.isEmpty();
     }
@@ -40,6 +49,7 @@ public class LoginController {
         //  Lay cookies xuoongs gan
         Cookie[]cookies = request.getCookies();
         if (cookies == null) {
+
             return "login";
         }else {
             String email = "";
@@ -61,13 +71,13 @@ public class LoginController {
             return "login";
         }
     }
-
     @PostMapping("")
     public String progressLogin(@RequestParam(value = "error", required = false) String error,
             @RequestParam(value = "email", required = false) String email,
             @RequestParam(value = "password", required = false) String password,
             Model model,
             boolean remember,
+            HttpSession httpSession,
             HttpServletResponse response) {
 
         // Controller: Nơi định nghĩa link
@@ -93,19 +103,39 @@ public class LoginController {
         // Dashboard page
         System.out.println("Kiem tra: " + email + "    _       " + password);
         List<UsersEntity> listUser = userRespository.findByEmailAndPassword(email, password);
+        RolesEntity role;
+        String roleName = "";
+        for (UsersEntity roleId : listUser){
+            role = roleId.getRolesEntity();
+            if (role != null) {
+                roleName = role.getName();
+                System.out.println("Kiem tra role_id " + roleName);
+            }
+        }
         boolean isSuccess = false;
         // Kiểm tra xem danh sách users có giá trị hay không.
         if (listUser.size() > 0) {
             // có giá trị => Đăng nhập thành công
-            if (remember){
+            if (remember){      // TODO note: remmeber lưu mật khẩu.
                 Cookie emailCookie = new Cookie("email", email);
                 Cookie passwordCookie = new Cookie("password",password);
                 response.addCookie(emailCookie);
                 response.addCookie(passwordCookie);
                 System.out.println("Them cookie thanh cong! ");
+
+//                Gán session để khi user đăng nhập thành công thì trả về dashboard
+                httpSession.setAttribute("email",email);
+                httpSession.setMaxInactiveInterval(8*60*60);
             }
+
+            // Create Session to email user to know login success
+            httpSession.setAttribute("email",email);
+            httpSession.setMaxInactiveInterval(8*60*60);
+
+            httpSession.setAttribute("role",roleName);
+            httpSession.setMaxInactiveInterval(8*60*60);
             isSuccess = true;
-            return "index";
+            return "redirect:/dashboard";
         } else {
             // không có giá trị => đăng nhập thất bại.
             // Đẩy giátriji cua bien isSuccess ra file html và dat ten key(bien) la

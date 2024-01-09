@@ -1,4 +1,4 @@
-package com.crmapp.crm.Entity;
+package com.crmapp.crm.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

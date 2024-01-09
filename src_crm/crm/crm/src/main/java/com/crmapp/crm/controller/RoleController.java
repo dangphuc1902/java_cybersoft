@@ -1,15 +1,16 @@
 package com.crmapp.crm.controller;
 
-import com.crmapp.crm.Entity.RolesEntity;
+import com.crmapp.crm.entity.RolesEntity;
 import com.crmapp.crm.repository.RolesRepository;
 import com.crmapp.crm.repository.SaveEntityReponsitory;
+import com.crmapp.crm.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
+import javax.management.relation.Role;
+import java.util.List;
 
 @Controller
 @RequestMapping("/role")
@@ -28,8 +29,10 @@ public class RoleController {
     @Autowired
     private RolesRepository rolesRepository;
 
+
     @Autowired
-    private SaveEntityReponsitory saveEntityService;
+    private RoleService roleService;    // Gọi Service
+
     /*
 * save(): có 2 chức năng vừa là thêm mới dữ liệu, vừa là cập nhật dữ liệu.
 *   - Thêm mới: khóa chính class entity truyền vào hàm save() không có  giá trị
@@ -39,46 +42,26 @@ public class RoleController {
     @GetMapping("/add")
     public String add(Model model){
         //TODO note:  Thêm dữ liệu vào bảng role và không gán giá trị cho kháo chính Id
-//        rolesEntity.setId(4);       // Update
-//        rolesEntity.setName("ROLE_TEST");
-//        rolesEntity.setDescription("Hello Test");
-//        rolesRepository.save(rolesEntity);      //save nhận vào Entity.
+
         return "role-add.html";
+    }
+    @GetMapping("/table")
+    public String tableRole(Model model){
+        List<RolesEntity> listRole = roleService.getAllRole();     // Get Service
+        model.addAttribute("tableRole",listRole);       // trả dữ liệu về giao diện.
+        return "role-table";
+    }
+    @GetMapping("/delete/{roleId}")
+    public String  deleteItem(@PathVariable(name = "roleId") Integer id) {
+        rolesRepository.deleteById(id);
+        return "redirect:/role/table"; // Chuyển hướng người dùng về trang role-table.html sau khi xóa thành công
     }
     @PostMapping("/add")
     public String processAdd(   @RequestParam String roleName,
-                             @RequestParam String desc,
-                             Model model){
+                             @RequestParam String desc,Model model
+                             ){
+        roleService.insertRole(roleName,desc,model);
 
-        boolean isSuccess = false;
-        RolesEntity rolesEntity = new RolesEntity();
-        rolesEntity.setName(roleName);
-        rolesEntity.setDescription(desc);
-
-
-        if (roleName == "" || desc == "") {
-            isSuccess = false;
-            model.addAttribute("isSuccess",isSuccess);
-            return "role-add.html";
-        }else {
-            RolesEntity savedEntity = saveEntityService.saveEntity(rolesEntity);
-            if (savedEntity != null){
-                isSuccess = true;
-                model.addAttribute("isSuccess",isSuccess);
-                return "role-add.html";
-            }
-            else {
-                isSuccess = false;
-                model.addAttribute("isSuccess",isSuccess);
-                return "role-add.html";
-            }
-        }
-
-
-
-/*
-* - Chỉnh link/ role thành /role/add : fix lỗi liên quan css và js bên file HTML.   xong
-* - Nếu thêm thành role thành công thì phải xuất ra màn hiình thông báo "thêm thành công" ngược lại "Thêm thất bại".
-* */
+        return "role-add.html";
     }
 }

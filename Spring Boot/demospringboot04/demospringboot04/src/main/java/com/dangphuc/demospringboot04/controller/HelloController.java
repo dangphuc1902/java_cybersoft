@@ -101,7 +101,6 @@ public class HelloController {
    }
 // TODO    4 Cách để đưa class khởi tạo sẵn giá trị lưu trữ trên IOC(Container dùng chung. lưu trong ứng dụng.)
 //     - Khi muốn lấy trên IOC thì sử dụng Autowried
-
 //    - @Bean: để tạo class gán sẵn giá trị thì sử dụng function có giá trị trả về là một class.
 //            + Khi sử dụng tham số thì spring boot sẽ tìm kiểu dữ liệu của tham số khai báo trong IOC
 //    - @Component

@@ -1,4 +1,4 @@
-package com.crmapp.crm.Entity;
+package com.crmapp.crm.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -19,17 +19,19 @@ public class UsersEntity {
     private String email;
     @Column(name = "password",nullable = false)
     private String password;
-    @Column(name = "fullname",nullable = false)
+    @Column(name = "firstname",nullable = false)
+    private String firstname;
+    @Column(name="lastname")
+    private String lastname;
+    @Column(name="fullname")
     private String fullname;
-    @Column(name="avatar")
-    private String avatar;
-//    @Column(name ="role_id" )
-//    private int role_id;
+    @Column(name="phonenumber")
+    private String phonenumber;
+    @Column(name="country")
+    private String country;
+
 
     @ManyToOne      // TODO note: Dựa vào "ManyToOne" hay "OneToMany" Xem chữ sau cùng để chọn một đối tượng private hay một List đối tượng.
     @JoinColumn(name = "role_id")       // TODO note: Tên cột trong dâatabase dùng để liên kết dữ liệu
     private RolesEntity rolesEntity;    // TODO note: Dựa vào "ManyToOne" hay "OneToMany" Xem chữ sau cùng để chọn một đối tượng private hay một List đối tượng.
-
-
-
 }

@@ -17,3 +17,14 @@
     - B1: Khi người dùng vào  trang role thì kiểm tra xem Session/Cookie lưu trữ thông tin người dùng có đang tồn tại không.
     - B2: Nếu tồn tại,cho đi vào trang role.
     - B3: Nếu không tồn tại thì Chuyển hướng về trang login.
+4. Role Table
+   - Yêu cầu lấy toàn bộ danh sách role và hiện thị lên giao diện role-table.html
+5. Chức năng: Thêm mới thành viên
+   - 
+# NOTE:
+1. Package chính:
+   - Controller: Chỉ dùng để khai báo đường dẫn và nhận tham số của người dùng truyền lên(Không xử lý logic code ở đây)
+   - Service: Chịu trách nhiệm xử lý logic code cho controller.
+   - Repository: Nơi định nghĩa các câu truy vấn liên quan tới database và trả kết quả của câu truy vấn cho Service không xử lý logic code.
+- Controller gọi Service gọi Repository
+- Repository trả kq Service trả kq Controller
