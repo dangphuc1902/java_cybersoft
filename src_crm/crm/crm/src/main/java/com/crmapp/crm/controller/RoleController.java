@@ -57,11 +57,36 @@ public class RoleController {
         return "redirect:/role/table"; // Chuyển hướng người dùng về trang role-table.html sau khi xóa thành công
     }
     @PostMapping("/add")
-    public String processAdd(   @RequestParam String roleName,
+    public String processAdd(@RequestParam String roleName,
                              @RequestParam String desc,Model model
                              ){
         roleService.insertRole(roleName,desc,model);
 
         return "role-add.html";
+    }
+//    TODo: chỉnh sửa role.
+//     * - Chỉnh link/ role thành /role/add : fix lỗi liên quan css và js bên file HTML.   xong
+//     * - Nếu thêm thành role thành công thì phải xuất ra màn hiình thông báo "thêm thành công" ngược lại "Thêm thất bại".
+//     * - B1: Tạo đường dẫn load giao diện thêm mới quyền.
+//    *  B2: Khi ngưi dùng click vào role muốn chỉnh sửa thì phải gán động od vào đường dẫn biết được người dùng đang click vào role nào muốn chỉnh sửa.
+//     * */
+    @GetMapping("/update/{roleId}")
+    public String update(@PathVariable(name = "roleId") int id, Model model){
+        RolesEntity rolesEntity =  roleService.getRoleId(id);
+        model.addAttribute("rolesEntity", rolesEntity);     // trả đối tượng ra giao diện luôn.
+
+        // truyền tham id vaoo để truyen tham số qua và biết được đang sửa id nào từ đó lấy được role name.
+        return "revisionRole";
+    }
+    @PostMapping("/update/{roleId}")
+    public String processUpdate(@PathVariable(name = "roleId") int id, @RequestParam String roleName,
+                                @RequestParam String desc,Model model){
+        RolesEntity rolesEntity = new RolesEntity();
+        rolesEntity.setId(id);          // set id chức năng update.
+        rolesEntity.setName(roleName);
+        rolesEntity.setDescription(desc);
+        roleService.updateRole(rolesEntity);
+        model.addAttribute("rolesEntity", rolesEntity);     // trả đối tượng ra giao diện luôn.
+        return "revisionRole.html";
     }
 }

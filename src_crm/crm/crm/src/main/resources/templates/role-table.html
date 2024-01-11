@@ -154,7 +154,7 @@
                                             <td th:text="${item.getDescription()}"></td>
 <!--                                            Lấy dữ liệu miêu tả của role    -->
                                             <td>
-                                                <a href="#" class="btn btn-sm btn-primary">Sửa</a>
+                                                <a href="#" th:href="@{/role/update/{roleId}(roleId=${item.id})}" class="btn btn-sm btn-primary">Sửa</a>
                                                 <a href="#" th:href="@{/role/delete/{roleId}(roleId=${item.id})}" class="btn btn-sm btn-danger">Xóa</a>
                                             </td>
                                         </tr>

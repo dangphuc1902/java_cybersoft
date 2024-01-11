@@ -153,7 +153,7 @@
                                         <td th:text="${user.getFirstname()}"></td>
                                         <td th:text="${user.getLastname()}"></td>
                                         <td th:text="${user.getEmail()}"></td>
-                                        <td th:text="${user.getRolesEntity()}"></td>
+                                        <td th:text="${(user.getRolesEntity().getName())}"></td>
                                         <td>
                                             <a href="#" class="btn btn-sm btn-primary">Sửa</a>
                                             <a href="#" class="btn btn-sm btn-danger">Xóa</a>

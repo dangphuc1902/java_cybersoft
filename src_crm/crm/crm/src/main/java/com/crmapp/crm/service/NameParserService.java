@@ -6,6 +6,7 @@ import java.util.Arrays;
 
 @Service
 public class NameParserService {
+    // File cut frist name and lastname
     public String[] parseFullName(String fullName) {
         return fullName.split("\\s+");
     }
