@@ -2,14 +2,12 @@ package com.crmapp.crm.controller;
 
 import com.crmapp.crm.entity.RolesEntity;
 import com.crmapp.crm.repository.RolesRepository;
-import com.crmapp.crm.repository.SaveEntityReponsitory;
 import com.crmapp.crm.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.management.relation.Role;
 import java.util.List;
 
 @Controller
@@ -87,6 +85,6 @@ public class RoleController {
         rolesEntity.setDescription(desc);
         roleService.updateRole(rolesEntity);
         model.addAttribute("rolesEntity", rolesEntity);     // trả đối tượng ra giao diện luôn.
-        return "revisionRole.html";
+        return "redirect:/role/table";
     }
 }

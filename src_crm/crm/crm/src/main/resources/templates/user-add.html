@@ -41,7 +41,7 @@
                         <i class="fa fa-bars"></i>
                     </a>
                     <div class="top-left-part">
-                        <a class="logo" href="index.html">
+                        <a class="logo" href="./dashboard">
                             <b>
                                 <img src="plugins/images/pixeladmin-logo.png" alt="home" />
                             </b>
@@ -86,32 +86,32 @@
             <div class="sidebar-nav navbar-collapse slimscrollsidebar">
                 <ul class="nav" id="side-menu">
                     <li style="padding: 10px 0 0;">
-                        <a href="index.html" class="waves-effect"><i class="fa fa-clock-o fa-fw"
-                                aria-hidden="true"></i><span class="hide-menu">Dashboard</span></a>
+                        <a href="./dashboard" class="waves-effect"><i class="fa fa-clock-o fa-fw"
+                                                                      aria-hidden="true"></i><span class="hide-menu">Dashboard</span></a>
                     </li>
                     <li>
-                        <a href="user-table.html" class="waves-effect"><i class="fa fa-user fa-fw"
-                                aria-hidden="true"></i><span class="hide-menu">Thành viên</span></a>
+                        <a href="./user/table" class="waves-effect"><i class="fa fa-user fa-fw"
+                                                                       aria-hidden="true"></i><span class="hide-menu">Thành viên</span></a>
                     </li>
                     <li>
-                        <a href="role-table.html" class="waves-effect"><i class="fa fa-modx fa-fw"
-                                aria-hidden="true"></i><span class="hide-menu">Quyền</span></a>
+                        <a href="./role/table" class="waves-effect"><i class="fa fa-modx fa-fw"
+                                                                       aria-hidden="true"></i><span class="hide-menu">Quyền</span></a>
                     </li>
                     <li>
-                        <a href="groupwork.html" class="waves-effect"><i class="fa fa-table fa-fw"
-                                aria-hidden="true"></i><span class="hide-menu">Dự án</span></a>
+                        <a href="./groupwork" class="waves-effect"><i class="fa fa-table fa-fw"
+                                                                      aria-hidden="true"></i><span class="hide-menu">Dự án</span></a>
                     </li>
                     <li>
-                        <a href="task.html" class="waves-effect"><i class="fa fa-table fa-fw"
-                                aria-hidden="true"></i><span class="hide-menu">Công việc</span></a>
+                        <a href="./task" class="waves-effect"><i class="fa fa-table fa-fw"
+                                                                 aria-hidden="true"></i><span class="hide-menu">Công việc</span></a>
                     </li>
                     <li>
-                        <a href="blank.html" class="waves-effect"><i class="fa fa-columns fa-fw"
-                                aria-hidden="true"></i><span class="hide-menu">Blank Page</span></a>
+                        <a href="./blank" class="waves-effect"><i class="fa fa-columns fa-fw"
+                                                                       aria-hidden="true"></i><span class="hide-menu">Blank Page</span></a>
                     </li>
                     <li>
-                        <a href="404.html" class="waves-effect"><i class="fa fa-info-circle fa-fw"
-                                aria-hidden="true"></i><span class="hide-menu">Error 404</span></a>
+                        <a href="./error404" class="waves-effect"><i class="fa fa-info-circle fa-fw"
+                                                                     aria-hidden="true"></i><span class="hide-menu">Error 404</span></a>
                     </li>
                 </ul>
             </div>
@@ -158,14 +158,10 @@
                                             class="form-control form-control-line" name="phoneNumber"> </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-12">Select Country</label>
+                                    <label class="col-sm-12">Select Role</label>
                                     <div class="col-sm-12">
-                                        <select class="form-control form-control-line" name="country">
-                                            <option>London</option>
-                                            <option>India</option>
-                                            <option>Usa</option>
-                                            <option>Canada</option>
-                                            <option>Thailand</option>
+                                        <select class="form-control form-control-line" name="selectedRoleId">
+                                            <option th:each="item : ${listRole}" th:value="${item.id}" th:text="${item.getName()}"></option>
                                         </select>
                                     </div>
                                 </div>
@@ -174,8 +170,8 @@
                                         <button type="submit" class="btn btn-success">Add User</button>
                                         <a href="user-table.html" class="btn btn-primary">Quay lại</a>
                                     </div>
-                                    <h3 style="color: blue;text-align: center" th:if="${isSuccess == true}" >Thêm thành viên thành công !</h3>
-                                    <h3 style="color: red;text-align: center" th:if="${isSuccess == false}" >Thêm thành viên thất bại !</h3>
+                                    <h3 style="color: blue;text-align: center" th:if="${insertUser == true}" >Thêm thành viên thành công !</h3>
+                                    <h3 style="color: red;text-align: center" th:if="${insertUser == false}" >Thêm thành viên thất bại !</h3>
                                 </div>
                             </form>
                         </div>

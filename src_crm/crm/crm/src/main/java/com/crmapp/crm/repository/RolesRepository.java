@@ -10,4 +10,5 @@ import java.util.List;
 //@Repository: Đưa lên IOC(Container: để dùng chung)
 @Repository
 public interface RolesRepository extends JpaRepository<RolesEntity,Integer> {
+
 }

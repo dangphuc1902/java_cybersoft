@@ -2,7 +2,6 @@ package com.crmapp.crm.service;
 
 import com.crmapp.crm.entity.RolesEntity;
 import com.crmapp.crm.repository.RolesRepository;
-import com.crmapp.crm.repository.SaveEntityReponsitory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -19,8 +18,7 @@ public class RoleService {
     public List<RolesEntity> getAllRole(){
         return rolesRepository.findAll();
     }
-    @Autowired
-    private SaveEntityReponsitory saveEntityService;
+
 public void insertRole(String roleName, String desc,Model model){
 
     boolean isSuccess = false;
@@ -34,21 +32,20 @@ public void insertRole(String roleName, String desc,Model model){
         model.addAttribute("isSuccess",isSuccess);
 
     }else {
-        RolesEntity savedEntity = saveEntityService.saveEntity(rolesEntity);
-        if (savedEntity != null){
+        try {
+            rolesRepository.save(rolesEntity);
             isSuccess = true;
             model.addAttribute("isSuccess",isSuccess);
-        }
-        else {
+        } catch (Exception e) {
+            // Handle the exception if the save operation fails
+            e.printStackTrace();
             isSuccess = false;
             model.addAttribute("isSuccess",isSuccess);
         }
+
     }
 }
-//    public RolesEntity findById(int id) {
-//        return rolesRepository.findById(id).orElse(null);
-//    }
-//
+
     public RolesEntity updateRole(RolesEntity rolesEntity) {
         return rolesRepository.save(rolesEntity);
     }

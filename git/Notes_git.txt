@@ -1,0 +1,51 @@
+Note
+
+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
+
+git status: Giúp kiểm tra trạng thái của các file trong project, xem file nào mới, filenaof là file đã chỉnh sửa.
+git add: Thêm file đã thay đổi hoặc chỉnh sửa vào danh sách chờ đẩy lên git
+	cú pháp: git add tên_file tên_file2
+	git add *: add tất cả các file thay đổi hoặc mới loại trừ file ẩn
+	git add .: add tất cả các file thay đổi hoặc mới bao gồm cả file ẩn
+
+git commit: Kí xác nhận các file thay đổi đã add vào danh sách chờ
+git push origin: uploand toàn bộ file trong danh sách chờ đẩy lên server git
+git pull: Lấy filr mới hoặc thay đổi trên server
+git clone: Là downloand toàn bộ source trên server về máy
+git branch: hiển thị các nhánh đang có.
+git clone -b tên_nhánh link git: Lấy code từ nhánh chỉ định.
+git fetch: Sẽ đồng bộ nhánh thay đổi trên git server. 
+git switch tên_nhánh: Chuyển đổi qua lại giữa các nhánh.
+git checkout tên_nhánh: Chuyển đổi qua lại giữa các nhánh.
+git checkout -b tên_nhánh: chưa có thì tạo nhánh mới. Chưa có thì báo lỗi.
+git checkout -b feature/login : Để tạo thêm nhánh cho tính năng login
+
+
+
+Lưu ý: origin => đại diện cho git trên server
+
+Đẩy file lưu trữ ở repo đã tạo trên git.
+Bước 1: git status.
+Bước 2: git add
+Bước 3: git commit -m"nội dung commit"
+bước 4: git push origin tên_nhánh
+
+<<<<<<< HEAD
+Lấy source từ git về máy
+git clone link git
+
+1. Cả hai Dev A và B cùng sử dụng chung repo git (cùng nhánh)
+ - A tạo file mới và code, B tạo file mới và code => ai push code sau thì sẻ bị lỗi không push code lên được
+
+nhánh main/master/product: nhánh chứa source code của ứng dụng đang chạy thực tế cung cấp cho khách hàng.
+
+nhánh uat: nhánh chứa source code chứa các tính năng đã phát triển và chờ test
+
+nhánh dev: Chứa source code chứa các tính năng dev đang phát triển.
+
+- Khi dev xong thì request lại nhánh dev.
+
+pull request: là Merge pull request gom 2 nhánh lại. 
+
+
+Tool compeare file: Meld .
