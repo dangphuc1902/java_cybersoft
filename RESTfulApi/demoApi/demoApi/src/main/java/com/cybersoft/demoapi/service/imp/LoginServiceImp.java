@@ -5,5 +5,6 @@ import org.springframework.stereotype.Service;
 @Service
 public interface LoginServiceImp {
 
-    boolean checkLogin(String username, String password);
+    String checkLogin(String username, String password);
+
 }
