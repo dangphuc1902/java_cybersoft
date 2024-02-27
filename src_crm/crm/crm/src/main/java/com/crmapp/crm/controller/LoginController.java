@@ -54,7 +54,7 @@ public class LoginController {
         }else {
             String email = "";
             String password = "";
-            for (Cookie cookie : cookies){
+            for (Cookie cookie : cookies){  
                 if (cookie.getName().equals("email")){
                     email = cookie.getValue();
                 }
@@ -62,12 +62,9 @@ public class LoginController {
                 if (cookie.getName().equals("password")){
                     password = cookie.getValue();
                 }
-                System.out.println("Kiemtra " + cookie.getValue()   );
             }
-
             model.addAttribute("email",email);
             model.addAttribute("password",password);
-
             return "login";
         }
     }

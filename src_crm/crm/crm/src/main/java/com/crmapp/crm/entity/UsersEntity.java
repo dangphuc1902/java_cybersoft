@@ -27,8 +27,8 @@ public class UsersEntity {
     private String fullname;
     @Column(name="phonenumber")
     private String phonenumber;
-    @Column(name="country")
-    private String country;
+    @Column(name="avatar_path ")
+    private String avatarPath;
 
 
     @ManyToOne      // TODO note: Dựa vào "ManyToOne" hay "OneToMany" Xem chữ sau cùng để chọn một đối tượng private hay một List đối tượng.

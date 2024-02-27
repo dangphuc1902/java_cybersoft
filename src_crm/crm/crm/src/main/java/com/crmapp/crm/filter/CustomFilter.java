@@ -12,7 +12,6 @@ public class CustomFilter implements Filter {
 // Khai báo fileter
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain) throws IOException, ServletException {
-        System.out.println("Kiem tra filter: " );
         HttpServletRequest request =  (HttpServletRequest) servletRequest;  // Ep kieu HttpServletRequest moi co getSession
         // request: Client truyền vào server.
         HttpServletResponse response = (HttpServletResponse) servletResponse; //// Ep kieu HttpServletResponse moi co sendRedirect
@@ -24,22 +23,6 @@ public class CustomFilter implements Filter {
         }else {
             chain.doFilter(servletRequest,servletResponse);
         }
-//        if (session != null && session.getAttribute("email") != null && !session.getAttribute("email").equals("")){
-//            // Kiểm tra xem session có giá trị ,
-//            if (path.equals("/login")){
-//                response.sendRedirect("http://localhost:8080");
-//            }else if(path.equals("/role")) {
-//                chain.doFilter(servletRequest,servletResponse);
-//            }
-//
-//        }else {
-//            if (path.equals("/login")){
-//                chain.doFilter(servletRequest,servletResponse);
-//            }else if(path.equals("/role")) {
-//                response.sendRedirect("http://localhost:8080/login");
-//            }
-//        }
-
 
 //        Cho đi tiếp vào đường dẫn mà client đang gọi hoặc thoát khỏi filter và đi tiếp.
 //        chain.doFilter(servletRequest,servletResponse);//        return null;

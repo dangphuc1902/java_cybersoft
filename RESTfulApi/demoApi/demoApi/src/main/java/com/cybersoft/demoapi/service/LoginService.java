@@ -1,8 +1,11 @@
 package com.cybersoft.demoapi.service;
 
 import com.cybersoft.demoapi.entity.UsersEntity;
+import com.cybersoft.demoapi.payload.resoponse.RoleResponse;
 import com.cybersoft.demoapi.repository.UserRepository;
 import com.cybersoft.demoapi.service.imp.LoginServiceImp;
+import com.cybersoft.demoapi.util.JwtUltils;
+import com.google.gson.Gson;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -24,6 +27,11 @@ public class LoginService implements LoginServiceImp {
     @Value("${key.token.jwt}")
     private String strKeyToken;
 
+    @Autowired
+    private JwtUltils jwtUltils;
+
+    private Gson gson = new Gson();
+
     @Override
     public String checkLogin(String username, String password) {
         UsersEntity userEntity = userRepository.findByEmail(username);
@@ -32,10 +40,15 @@ public class LoginService implements LoginServiceImp {
 
 //            TODO: Token (Tạo Token)
 //            Tạo từ key đã sinh ra và lưu trữ.
-            SecretKey secretKey = Keys.hmacShaKeyFor(Decoders.BASE64.decode(strKeyToken));
-            token = Jwts.builder().subject("Hello JWT").signWith(secretKey).compact();
+//            SecretKey secretKey = Keys.hmacShaKeyFor(Decoders.BASE64.decode(strKeyToken));
+//            token = Jwts.builder().subject("Hello JWT").signWith(secretKey).compact();
+//                String roles =gson.toJson(userEntity.getRoles());
 
-            System.out.println("Check token: " + token);
+            // khuc nay phai truyen vao role
+            RoleResponse roleResponse = new RoleResponse();
+            roleResponse.setName(userEntity.getRoles().getName());
+            String roles = gson.toJson(roleResponse);
+                token = jwtUltils.createToken(roles);
         }
         return token;
     }

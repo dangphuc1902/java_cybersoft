@@ -5,11 +5,18 @@ import com.crmapp.crm.entity.UsersEntity;
 import com.crmapp.crm.repository.RolesRepository;
 import com.crmapp.crm.repository.UserRespository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
+import java.nio.file.Files;
+
+import static org.aspectj.weaver.tools.cache.SimpleCacheFactory.path;
 
 @Service
 public class UserService {
@@ -41,7 +48,9 @@ public class UserService {
         }
         return dataRole;
     }
-
+    public UsersEntity save(UsersEntity usersEntity){
+        return userRespository.save(usersEntity);
+    }
     public boolean isEmailExist(String email){
         List<UsersEntity> listUsers = userRespository.findAll();// Lấy toàn bộ danh sách user từ DB
         boolean isExist = false; // Đặt biến flag kiểm tra xem email có tồn tại trong DB hay không, Gán mặc định là không (flase)
@@ -62,12 +71,16 @@ public class UserService {
         }
         return roleId;
     }
+    @Value("${upload.path}")
+    private String uploadPath;
 
     public boolean insertUser(String fullname,
                            String email,
                            String password,
                            String phoneNumber,
+                          MultipartFile file,
                            RolesEntity rolesEntity){
+
         boolean isSuccess = false;  // biến flag kiểm tra xem có thêm user thành công hay không, mặc định là không (false)
         UsersEntity usersEntity = new UsersEntity();
         usersEntity.setFullname(fullname);
@@ -77,8 +90,12 @@ public class UserService {
         usersEntity.setEmail(email);
         usersEntity.setPassword(password);
         usersEntity.setPhonenumber(phoneNumber);
+        usersEntity.setAvatarPath(path.toString());
         usersEntity.setRolesEntity(rolesEntity);
         try {
+            byte[] bytes = file.getBytes();
+            Path path = Paths.get(uploadPath + file.getOriginalFilename());
+            Files.write(path, bytes);
             if (!isEmailExist(email)){ // Yêu cầu khi thêm thì email phải khác nhau, nếu email không tồn tại thì mới add user.
                 userRespository.save(usersEntity);
                 isSuccess = true;
